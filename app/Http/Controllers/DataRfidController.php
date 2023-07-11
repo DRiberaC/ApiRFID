@@ -10,6 +10,10 @@ class DataRfidController extends Controller
     function input(Request $request)
     {
         DataRfid::create([
+            'alldata' => 'recibiendo...'
+        ]);
+
+        DataRfid::create([
             'alldata' => $request->getContent()
         ]);
         return response()->json([
