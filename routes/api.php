@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DataRfidController;
+use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::controller(DataRfidController::class)->prefix('rfid')->group(function () {
+    Route::post('input', 'input');
 });
+
+// Route::controller(DataRfidController::class)->prefix('rfid')->middleware('auth:sanctum')->group(function () {
+//     Route::get('ouput', 'ouput');
+// });
